@@ -43,6 +43,6 @@ public class TestBase {
     @AfterEach
     public void endTest() {
         logger.info("--- afterEach ---");
-        //driver.quit();
+        driver.quit();
     }
 }
