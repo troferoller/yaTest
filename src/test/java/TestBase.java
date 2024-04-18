@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,6 +27,7 @@ public class TestBase {
 
         System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
 
@@ -34,12 +36,13 @@ public class TestBase {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
         driver.manage().deleteAllCookies();
     }
 
     @AfterEach
     public void endTest() {
         logger.info("--- afterEach ---");
-
+        //driver.quit();
     }
 }

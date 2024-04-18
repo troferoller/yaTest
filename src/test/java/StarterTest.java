@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 public class StarterTest extends Tests {
 
-    private final String element = "Ноутбуки";
+    private final String selectorNout = "a[href=\"https://market.yandex.ru/catalog--noutbuki/26895412/list?hid=91013&local-offers-first=0\"]";
     private final String tablets = "Планшеты";
     private final String max = "30000";
 
@@ -14,7 +14,11 @@ public class StarterTest extends Tests {
         openYandexPage();
         goToYandexMarket();
         goToTechnics();
-        goToElement(element);
-        setUpMax(max);
+        goToElement(selectorNout);
+        setPrice(max);
+        setManufacturers();
+        selectFirstElement();
+        String el1 = selectFirstElement();
+        assertFirstElement(el1);
     }
 }
